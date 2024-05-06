@@ -1,6 +1,8 @@
 package br.com.example.websocketclient;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private WebSocketClient webSocketClient;
+
+    private Button connect;
+    private Button message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +27,33 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        connect = (Button) findViewById(R.id.buttonConnect);
+        message = (Button) findViewById(R.id.buttonMessage);
+
+        connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webSocketClient = new WebSocketClient();
+                MyWebSocketListener listener = new MyWebSocketListener();
+                webSocketClient.connect("ws://192.168.1.11:8080/websocket", listener);
+            }
+        });
+
+
+
 
         webSocketClient = new WebSocketClient();
         MyWebSocketListener listener = new MyWebSocketListener();
         webSocketClient.connect("ws://192.168.1.11:8080/websocket", listener);
 
         // Exemplo de como enviar uma mensagem
-        webSocketClient.sendMessage("Hello, WebSocket!");
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webSocketClient.sendMessage("Hello, WebSocket!");
+            }
+        });
+
 
 
     }
