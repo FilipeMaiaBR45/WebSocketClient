@@ -42,15 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        webSocketClient = new WebSocketClient();
-        MyWebSocketListener listener = new MyWebSocketListener();
-        webSocketClient.connect("ws://192.168.1.11:8080/websocket", listener);
+//        webSocketClient = new WebSocketClient();
+//        MyWebSocketListener listener = new MyWebSocketListener();
+//        webSocketClient.connect("ws://45.161.124.150:8080/app/m0qzlptrkvwzh7tpvsqa", listener);
 
         // Exemplo de como enviar uma mensagem
         message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webSocketClient.sendMessage("Hello, WebSocket!");
+                Message message = new Message("pusher:subscribe","dados-tablets", "ASDG4524");
+                webSocketClient.sendMessage(message);
             }
         });
 

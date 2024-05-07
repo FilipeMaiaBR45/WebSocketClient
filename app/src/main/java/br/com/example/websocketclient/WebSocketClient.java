@@ -23,9 +23,18 @@ public class WebSocketClient {
         }
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(Message message) {
+
+         message = new Message("pusher:subscribe", "dados-tablets", "ASDG4524");
+        String jsonMessage = message.toJson();
         if (webSocket != null) {
-            webSocket.send(message);
+            webSocket.send(jsonMessage);
+        }
+    }
+
+    public void receiverMessage() {
+        if (webSocket != null) {
+            webSocket.request();
         }
     }
 }

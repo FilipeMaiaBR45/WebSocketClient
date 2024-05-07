@@ -18,18 +18,21 @@ public class MyWebSocketListener extends WebSocketListener {
     public void onMessage(WebSocket webSocket, String text) {
         super.onMessage(webSocket, text);
         // Mensagem recebida
+        Log.i("websockettessssssss", "Mensagem recebida " + text);
     }
 
     @Override
     public void onMessage(WebSocket webSocket, ByteString bytes) {
         super.onMessage(webSocket, bytes);
         // Mensagem recebida (bytes)
+        Log.i("websockettessssssss", "Mensagem recebida (bytes)");
     }
 
     @Override
     public void onClosed(WebSocket webSocket, int code, String reason) {
         super.onClosed(webSocket, code, reason);
         // Conexão fechada
+        Log.i("websockettessssssss", "Mensagem recebida (bytes)");
     }
 
     @Override
